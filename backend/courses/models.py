@@ -8,3 +8,4 @@ class Enrollments(models.Model):
     student = models.ForeignKey(Students, on_delete=CASCADE)
     enrollment_date = models.DateField()
     cancelled = models.BooleanField()
+
