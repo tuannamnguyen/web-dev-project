@@ -8,6 +8,7 @@ class Assignments(models.Model):
     assignment_datetime = models.DateTimeField()
     description = models.TextField()
 
+
 class Scores(models.Model):
     assignments = models.ForeignKey(Assignments, on_delete=models.CASCADE)
     students = models.ForeignKey(Students, on_delete=models.CASCADE)
