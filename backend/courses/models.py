@@ -1,34 +1,31 @@
 from django.db import models
 from users.models import Students, Teachers
 
-class Categories(models.Model):
-    categoryDescription = models.CharField(max_length = 100)
-
-class Course(models.Model):
-    courseDescription = models.CharField(max_length = 100)
-    abstract = models.TextField(max_length = 100)
-    bibliography = models.TextField(max_length = 100)
-    category = models.ForeignKey(Categories, on_delete=models.CASCADE)
+class Courses(models.Model):
+    course_id = models.CharField(max_length=10, primary_key=True)
+    course_description = models.CharField(max_length=100)
+    abstract = models.TextField()
+    required_textbook = models.TextField()
 
 class Cycle(models.Model):
-    cycleDescription = models.CharField(max_length = 100)
-    cycleEndDate = models.DateField()
-    cycleStartDate = models.DateField()
-    vacationStartDate = models.DateField()
-    vacationEndDate = models.DateField()
+    cycle_id = models.CharField(max_length=10, primary_key=True)
+    cycle_description = models.CharField(max_length=100)
+    cycle_start_date = models.DateField()
+    cycle_end_date = models.DateField()
+
 
 class CoursesPerCycle(models.Model):
-    courseStartDate = models.DateField(nullable = False)
-    courseEndDate = models.DateField()
+    courses = models.ForeignKey(Courses, on_delete=models.CASCADE)
     cycle = models.ForeignKey(Cycle, on_delete=models.CASCADE)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course_start_date = models.DateField()
+    course_end_date = models.DateField()
 
 class Enrollments(models.Model):
     courses = models.ForeignKey(CoursesPerCycle, on_delete=models.CASCADE)
-    student = models.ForeignKey(Students, on_delete=models.CASCADE)
+    students = models.ForeignKey(Students, on_delete=models.CASCADE)
     enrollment_date = models.DateField()
     cancelled = models.BooleanField()
-    cancelled_reason = models.CharField(max_length=100, null=True)
+    cancelled_reason = models.CharField(max_length=100, blank=True)
 
 
 class Classes(models.Model):
@@ -43,6 +40,6 @@ class Classes(models.Model):
 
 class Attendance(models.Model):
     classes = models.ForeignKey(Classes, on_delete=models.CASCADE)
-    student = models.ForeignKey(Students, on_delete=models.CASCADE)
-    time_arrive = models.TimeField(null=True)
-    time_leave = models.TimeField(null=True)
+    students = models.ForeignKey(Students, on_delete=models.CASCADE)
+    time_arrive = models.TimeField(blank=True)
+    time_leave = models.TimeField(blank=True)

@@ -1,9 +1,10 @@
 from django.db import models
 from users.models import Students
+from courses.models import CoursesPerCycle
 
 
 class Assignments(models.Model):
-    courses = models.ForeignKey('CoursesPerCycle', on_delete=models.CASCADE)
+    courses = models.ForeignKey(CoursesPerCycle, on_delete=models.CASCADE)
     assignment_num = models.IntegerField()
     assignment_datetime = models.DateTimeField()
     description = models.TextField()
