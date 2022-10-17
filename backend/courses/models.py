@@ -1,5 +1,4 @@
 from django.db import models
-from users.models import Students, Teachers
 
 class Courses(models.Model):
     course_id = models.CharField(max_length=10, primary_key=True)
@@ -15,22 +14,22 @@ class Cycle(models.Model):
 
 
 class CoursesPerCycle(models.Model):
-    courses = models.ForeignKey(Courses, on_delete=models.CASCADE)
-    cycle = models.ForeignKey(Cycle, on_delete=models.CASCADE)
+    courses = models.ForeignKey('courses.Courses', on_delete=models.CASCADE)
+    cycle = models.ForeignKey('courses.Cycle', on_delete=models.CASCADE)
     course_start_date = models.DateField()
     course_end_date = models.DateField()
 
 class Enrollments(models.Model):
-    courses = models.ForeignKey(CoursesPerCycle, on_delete=models.CASCADE)
-    students = models.ForeignKey(Students, on_delete=models.CASCADE)
+    courses = models.ForeignKey('courses.CoursesPerCycle', on_delete=models.CASCADE)
+    students = models.ForeignKey('users.Students', on_delete=models.CASCADE)
     enrollment_date = models.DateField()
     cancelled = models.BooleanField()
     cancelled_reason = models.CharField(max_length=100, blank=True)
 
 
 class Classes(models.Model):
-    courses = models.ForeignKey(CoursesPerCycle, on_delete=models.CASCADE)
-    teacher = models.ForeignKey(Teachers, on_delete=models.CASCADE)
+    courses = models.ForeignKey('courses.CoursesPerCycle', on_delete=models.CASCADE)
+    teacher = models.ForeignKey('users.Teachers', on_delete=models.CASCADE)
     class_no = models.IntegerField()
     class_title = models.CharField(max_length=100)
     class_date = models.CharField(max_length=100)
@@ -39,7 +38,7 @@ class Classes(models.Model):
 
 
 class Attendance(models.Model):
-    classes = models.ForeignKey(Classes, on_delete=models.CASCADE)
-    students = models.ForeignKey(Students, on_delete=models.CASCADE)
+    classes = models.ForeignKey('courses.Classes', on_delete=models.CASCADE)
+    students = models.ForeignKey('users.Students', on_delete=models.CASCADE)
     time_arrive = models.TimeField(blank=True)
     time_leave = models.TimeField(blank=True)

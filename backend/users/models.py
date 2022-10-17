@@ -1,5 +1,4 @@
 from django.db import models
-from courses.models import CoursesPerCycle
 
 
 class Students(models.Model):
@@ -18,5 +17,5 @@ class Teachers(models.Model):
 
 
 class TeachersPerCourse(models.Model):
-    courses = models.ForeignKey(CoursesPerCycle, on_delete=models.CASCADE)
+    courses = models.ForeignKey('courses.CoursesPerCycle', on_delete=models.CASCADE)
     teacher = models.ForeignKey(Teachers, on_delete=models.CASCADE)
