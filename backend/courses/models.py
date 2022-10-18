@@ -15,9 +15,14 @@ class Cycle(models.Model):
 
 class CoursesPerCycle(models.Model):
     courses = models.ForeignKey('courses.Courses', on_delete=models.CASCADE)
-    cycle = models.ForeignKey('courses.Cycle', on_delete=models.CASCADE)
+    cycles = models.ForeignKey('courses.Cycle', on_delete=models.CASCADE)
     course_start_date = models.DateField()
     course_end_date = models.DateField()
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint('courses', 'cycles')
+        ]
 
 class Enrollments(models.Model):
     courses = models.ForeignKey('courses.CoursesPerCycle', on_delete=models.CASCADE)
@@ -26,15 +31,25 @@ class Enrollments(models.Model):
     cancelled = models.BooleanField()
     cancelled_reason = models.CharField(max_length=100, blank=True)
 
+    class Meta:
+        constraints = [
+            models.UniqueConstraint('students', 'courses')
+        ]
+
 
 class Classes(models.Model):
     courses = models.ForeignKey('courses.CoursesPerCycle', on_delete=models.CASCADE)
-    teacher = models.ForeignKey('users.Teachers', on_delete=models.CASCADE)
+    teachers = models.ForeignKey('users.Teachers', on_delete=models.CASCADE)
     class_no = models.IntegerField()
     class_title = models.CharField(max_length=100)
     class_date = models.CharField(max_length=100)
     start_time = models.TimeField()
     end_time = models.TimeField()
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint('courses', 'teacher')
+        ]
 
 
 class Attendance(models.Model):
@@ -42,3 +57,8 @@ class Attendance(models.Model):
     students = models.ForeignKey('users.Students', on_delete=models.CASCADE)
     time_arrive = models.TimeField(blank=True)
     time_leave = models.TimeField(blank=True)
+
+    class Meta: 
+        constraints = [
+            models.UniqueConstraint('classes', 'students')
+        ]

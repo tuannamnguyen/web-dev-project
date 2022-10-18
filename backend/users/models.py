@@ -18,4 +18,9 @@ class Teachers(models.Model):
 
 class TeachersPerCourse(models.Model):
     courses = models.ForeignKey('courses.CoursesPerCycle', on_delete=models.CASCADE)
-    teacher = models.ForeignKey(Teachers, on_delete=models.CASCADE)
+    teachers = models.ForeignKey(Teachers, on_delete=models.CASCADE)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint('courses', 'teachers')
+        ]
