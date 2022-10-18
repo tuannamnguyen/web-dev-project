@@ -21,7 +21,7 @@ class CoursesPerCycle(models.Model):
 
     class Meta:
         constraints = [
-            models.UniqueConstraint('courses', 'cycles')
+            models.UniqueConstraint('courses', 'cycles', name='cpc_unique_courses_cycles')
         ]
 
 class Enrollments(models.Model):
@@ -33,7 +33,7 @@ class Enrollments(models.Model):
 
     class Meta:
         constraints = [
-            models.UniqueConstraint('students', 'courses')
+            models.UniqueConstraint('students', 'courses', name='enrollments_unique_courses_students')
         ]
 
 
@@ -48,7 +48,7 @@ class Classes(models.Model):
 
     class Meta:
         constraints = [
-            models.UniqueConstraint('courses', 'teacher')
+            models.UniqueConstraint('courses', 'teachers', name='classes_unique_courses_teachers')
         ]
 
 
@@ -60,5 +60,5 @@ class Attendance(models.Model):
 
     class Meta: 
         constraints = [
-            models.UniqueConstraint('classes', 'students')
+            models.UniqueConstraint('classes', 'students', name='attendance_unique_classes_students')
         ]

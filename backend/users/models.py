@@ -22,5 +22,5 @@ class TeachersPerCourse(models.Model):
 
     class Meta:
         constraints = [
-            models.UniqueConstraint('courses', 'teachers')
+            models.UniqueConstraint('courses', 'teachers', name='tpc_unique_courses_teachers')
         ]
