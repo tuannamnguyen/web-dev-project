@@ -1,9 +1,25 @@
-from dataclasses import fields
-from rest_framework import serializers
-from .models import * 
+from rest_framework.serializers import ModelSerializer
+from .models import *
 
-class CoursesSerializer(serializers.ModelSerializer):
+
+class CoursesSerializer(ModelSerializer):
     class Meta:
         model = Courses
-        fields = ['course_id', 'course_description', 'course_abstract', 'course_required_textbook']
-        
+        fields = '__all__'
+
+
+class EnrollmentsSerializer(ModelSerializer):
+    class Meta:
+        model = Enrollments
+        fields = '__all__'
+
+
+class ClassesSerializer(ModelSerializer):
+    class Meta:
+        model = Classes
+        fields = '__all__'
+
+class AttendanceSerializer(ModelSerializer):
+    class Meta:
+        model = Attendance
+        fields = '__all__'
