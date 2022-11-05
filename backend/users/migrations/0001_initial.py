@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('student_name', models.CharField(max_length=100)),
                 ('email', models.EmailField(max_length=254)),
                 ('birth_date', models.CharField(blank=True, max_length=10, null=True)),
-                ('phone_number', models.CharField(blank=True, default='', max_length=30)),
+                ('phone_num', models.CharField(blank=True, default='', max_length=30)),
             ],
         ),
         migrations.CreateModel(
@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
                 ('teacher_id', models.CharField(max_length=10, primary_key=True, serialize=False)),
                 ('teacher_name', models.CharField(max_length=100)),
                 ('email', models.EmailField(max_length=254)),
-                ('phone_number', models.CharField(blank=True, default='', max_length=30)),
+                ('phone_num', models.CharField(blank=True, default='', max_length=30)),
             ],
         ),
         migrations.CreateModel(
