@@ -1,5 +1,5 @@
 from dataclasses import field, fields
-from .models import Students, Teachers
+from .models import Students, Teachers,TeachersPerCourse
 from rest_framework import serializers
 class StudentsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -9,3 +9,8 @@ class TeachersSerializer(serializers.ModelSerializer):
     class Meta:
         model = Teachers
         fields = ["teacher_id", "teacher_name","email","phone_num"]
+
+class TeachersPerCourseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TeachersPerCourse
+        fields = ["teachers_id"]

@@ -1,13 +1,13 @@
 from django.urls import path, include
 from . import views
 from rest_framework import routers
-from .views import StudentsList
+from .views import *
 router = routers.DefaultRouter()
+router.register(r"students", views.StudentsViewSet, "students")
+router.register(r"teachers", views.TeachersViewSet,  "teachers")
+router.register(r"teacherspercourse", views.TeachersPerCourseViewSet,  "teacherspercourse")
+
 urlpatterns = [
-   path('', include(router.urls)),
-   path('Students/', views.StudentsList.as_view()),
-   path('Students/<int:pk>', views.StudentsDetail.as_view()),
-   path('Teachers/',views.TeachersList.as_view() ),
-   path('Teachers/<int:pk>', views.TeachersDetail.as_view()),
+  path('', include(router.urls))
 ]
 
