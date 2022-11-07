@@ -1,4 +1,3 @@
-from dataclasses import field, fields
 from .models import Students, Teachers,TeachersPerCourse
 from rest_framework import serializers
 class StudentsSerializer(serializers.ModelSerializer):
@@ -13,4 +12,4 @@ class TeachersSerializer(serializers.ModelSerializer):
 class TeachersPerCourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = TeachersPerCourse
-        fields = ["teachers_id"]
+        fields = ["courses", "teachers"]

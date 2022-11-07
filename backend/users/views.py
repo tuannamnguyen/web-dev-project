@@ -1,8 +1,6 @@
-from msilib.schema import ListView
 from django.shortcuts import render
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets
 from users.serializers import *
-from rest_framework.permissions import IsAdminUser
 from .models import Students, Teachers
 # Create your views here.
 
