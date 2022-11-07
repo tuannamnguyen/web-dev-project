@@ -1,15 +1,20 @@
-from .models import Students, Teachers,TeachersPerCourse
+from .models import Students, Teachers, TeachersPerCourse
 from rest_framework import serializers
+
+
 class StudentsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Students
-        fields = [ "student_id","student_name","email","birth_date", "phone_num"]
+        fields = '__all__'
+
+
 class TeachersSerializer(serializers.ModelSerializer):
     class Meta:
         model = Teachers
-        fields = ["teacher_id", "teacher_name","email","phone_num"]
+        fields = '__all__'
+
 
 class TeachersPerCourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = TeachersPerCourse
-        fields = ["courses", "teachers"]
+        fields = '__all__'

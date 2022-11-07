@@ -19,6 +19,7 @@ class ClassesSerializer(ModelSerializer):
         model = Classes
         fields = '__all__'
 
+
 class AttendanceSerializer(ModelSerializer):
     class Meta:
         model = Attendance
