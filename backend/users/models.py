@@ -1,11 +1,10 @@
-from email.policy import default
 from django.db import models
 
 class Students(models.Model):
     student_id = models.CharField(max_length=10, primary_key=True)
     student_name = models.CharField(max_length=100)
     email = models.EmailField()
-    birth_date = models.CharField(max_length=10, blank=True, null=True)
+    birth_date = models.DateField(max_length=10, blank=True, null=True)
     phone_number = models.CharField(max_length=30, blank=True, default='')
 
 class Teachers(models.Model):
