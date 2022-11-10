@@ -7,7 +7,7 @@ import MainContent from './components/MainContent';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path='/' element={<MainContent />}>
+    <Route path='/' element={<Home />}>
 
     </Route>
   )
