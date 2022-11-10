@@ -4,10 +4,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 
-import Grid from '@mui/material/Grid';
-import Sidebar from './Sidebar';
-
-
+import Sidebars from './f_sidebar';
 
 export default function Blog() {
 
@@ -37,18 +34,15 @@ export default function Blog() {
         ],
       };
 
-      const theme = createTheme();
 
     return (
         <>
-            <Grid container spacing={5} sx={{ mt: 3 }} >
-            <Sidebar
+            <Sidebars
               title={sidebar.title}
               description={sidebar.description}
               archives={sidebar.archives}
               social={sidebar.social}
             />
-            </Grid>
         </>
     )
 }
