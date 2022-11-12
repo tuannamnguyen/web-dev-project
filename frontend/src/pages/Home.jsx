@@ -6,18 +6,17 @@ import CardCourse from "../components/CardCourse";
 
 export default function Home() {
     return (
-        <Base>
-            <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                <Grid item sm={4} >
-                    <CardCourse />
-                </Grid>
-                <Grid item sm={4} >
-                    <CardCourse />
-                </Grid>
-                <Grid item sm={4} >
-                    <CardCourse />
-                </Grid>
+        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+            <Grid item sm={4} >
+                <CardCourse />
             </Grid>
-        </Base>
+            <Grid item sm={4} >
+                <CardCourse />
+            </Grid>
+            <Grid item sm={4} >
+                <CardCourse />
+            </Grid>
+        </Grid>
+
     );
 }
