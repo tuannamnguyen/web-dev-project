@@ -12,3 +12,5 @@ class Scores(models.Model):
     assignments = models.ForeignKey('assignments.Assignments', on_delete=models.CASCADE)
     students = models.ForeignKey('users.Students', on_delete=models.CASCADE)
     score = models.DecimalField(max_digits=4, decimal_places=2)
+
+
