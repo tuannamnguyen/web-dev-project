@@ -1,10 +1,9 @@
 import { Grid } from "@mui/material";
 import { Container } from "@mui/system";
 import * as React from "react";
+import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
-import { Outlet, useLocation } from "react-router-dom";
-import Home from "../pages/Home";
 
 export default function Base(props) {
   return (
@@ -17,7 +16,9 @@ export default function Base(props) {
           columns={{ xs: 4, sm: 8, md: 12 }}
         >
           <Grid item xs={4} sm={8} md={8}>
-            {useLocation().pathname === "/" ? <Home /> : <Outlet />}
+            <main>
+              <Outlet />
+            </main>
           </Grid>
           <Grid item xs={4} sm={8} md={4}>
             <Sidebar />
