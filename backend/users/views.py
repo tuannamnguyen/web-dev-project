@@ -17,6 +17,7 @@ class StudentsViewSet(viewsets.ModelViewSet):
         return Students.objects.all()
 
 
+
 class TeachersViewSet(viewsets.ModelViewSet):
     serializer_class = TeachersSerializer
     
@@ -24,11 +25,13 @@ class TeachersViewSet(viewsets.ModelViewSet):
         return Teachers.objects.all()
 
 
+
 class TeachersPerCourseViewSet(viewsets.ModelViewSet):
     serializer_class = TeachersPerCourseSerializer
-
     def get_queryset(self):
         return TeachersPerCourse.objects.all()
+
+
 
 class StudentsSignupView(generics.GenericAPIView):
     serializer_class=StudentsSignupSerializer
@@ -64,6 +67,8 @@ class StudentLoginByAuthToken(ObtainAuthToken):
         return Response({
             'token':token.key,
             'user_id':user.id,
+            'user_email':user.email,
+            'birth_date': user.birth_date,
             'is_teacher':user.is_teacher,
             'is_student':user.is_student
         })
@@ -77,6 +82,8 @@ class TeacherLoginByAuthToken(ObtainAuthToken):
         return Response({
             'token':token.key,
             'user_id':user.id,
+            'user_email':user.email,
+            'birth_date': user.birth_date,
             'is_teacher':user.is_teacher,
             'is_student':user.is_student
         })

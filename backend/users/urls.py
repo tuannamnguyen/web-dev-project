@@ -20,3 +20,4 @@ urlpatterns = [
     path('teacher/dashboard/', TeachersOnlyView.as_view()),
 ]
 
+

@@ -20,7 +20,8 @@ from rest_framework.authtoken.models import Token
 class User(AbstractUser):
     is_student=models.BooleanField(default=False)
     is_teacher=models.BooleanField(default=False)
-
+    birth_date = models.DateField(max_length=10, blank=True, null=True)
+    phone_number = models.CharField(max_length=30)
     def __str__(self) :
         return self.username
         
@@ -32,9 +33,6 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 
 class Students(models.Model):
     user=models.OneToOneField(User, related_name="student", on_delete=models.CASCADE)
-    email = models.EmailField()
-    birth_date = models.CharField(max_length=10, blank=True, null=True)
-    phone_number = models.CharField(max_length=30, blank=True, default='')
 
     def __str__(self):
         return self.user.username
@@ -43,12 +41,9 @@ class Students(models.Model):
 
 class Teachers(models.Model):
     user=models.OneToOneField(User, related_name="teacher", on_delete=models.CASCADE)
-    teacher_name = models.CharField(max_length=100)
-    email = models.EmailField()
-    phone_number = models.CharField(max_length=30, blank=True, default='')
 
     def __str__(self):
-        return self.teacher_name
+        return self.user.username
 
 
 class TeachersPerCourse(models.Model):
