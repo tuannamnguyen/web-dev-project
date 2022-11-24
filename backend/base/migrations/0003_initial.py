@@ -9,13 +9,24 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+        ('users', '0001_initial'),
         ('courses', '0001_initial'),
-        ('base', '0001_initial'),
+        ('base', '0002_initial'),
     ]
 
     operations = [
         migrations.AddField(
             model_name='timetable',
+            name='teacher',
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='users.teacher'),
+        ),
+        migrations.AddField(
+            model_name='notification',
+            name='batch',
+            field=models.ManyToManyField(to='base.batch'),
+        ),
+        migrations.AddField(
+            model_name='notification',
             name='course',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='courses.course'),
         ),

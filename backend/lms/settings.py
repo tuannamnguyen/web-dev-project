@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'lms.wsgi.application'
 DATABASES = {
     'default': {  
         'ENGINE': 'django.db.backends.mysql',  
-        'NAME': ' w42g2_lms',  
+        'NAME': 'w42g2_lms',  
         'USER': 'root',  
         'PASSWORD': config('MYSQL_PASSWORD'), 
         'HOST': '127.0.0.1',  
