@@ -1,6 +1,7 @@
 from pathlib import Path
 from datetime import timedelta
 import os
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -84,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',  
         'NAME': ' w42g2_lms',  
         'USER': 'root',  
-        'PASSWORD': 'mynameisnam8226',  
+        'PASSWORD': config('MYSQL_PASSWORD'), 
         'HOST': '127.0.0.1',  
         'PORT': '3306',  
         'OPTIONS': {  
