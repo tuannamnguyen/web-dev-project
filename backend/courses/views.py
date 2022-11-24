@@ -1,31 +1,19 @@
-from rest_framework import viewsets
-from .models import *
-from .serializers import *
+from rest_framework.response import Response
+from rest_framework.decorators import api_view, permission_classes
+# from rest_framework.permissions import IsAuthenticated
+
+from .serializers import CourseSerializer
+from .models import Course
+
+# from users.models import Student
 
 
-class CoursesViewSet(viewsets.ModelViewSet):
-    serializer_class = CoursesSerializer
-
-    def get_queryset(self):
-        return Courses.objects.all()
-
-
-class EnrollmentsViewSet(viewsets.ModelViewSet):
-    serializer_class = EnrollmentsSerializer
-
-    def get_queryset(self):
-        return Enrollments.objects.all()
-
-
-class ClassesViewSet(viewsets.ModelViewSet):
-    serializer_class = ClassesSerializer
-
-    def get_queryset(self):
-        return Classes.objects.all()
-
-
-class AttendanceViewSet(viewsets.ModelViewSet):
-    serializer_class = AttendanceSerializer
-
-    def get_queryset(self):
-        return Attendance.objects.all()
+@api_view(['GET'])
+# @permission_classes([IsAuthenticated])
+def courseList(request):
+    user = request.user
+    # student = Student.objects.get(user=user)
+    # courses = student.course_set.all()
+    courses = Course.objects.all()
+    serializer = CourseSerializer(courses, many=True)
+    return Response(serializer.data)

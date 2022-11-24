@@ -1,6 +1,4 @@
 from django.contrib import admin
-from .models import *
+from .models import Course
 
-models_list = [Courses, Enrollments, Classes, Attendance]
-admin.site.register(models_list)
-
+admin.site.register(Course)

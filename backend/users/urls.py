@@ -1,22 +1,11 @@
-from django.urls import path, include
-from . import views
-from rest_framework import routers
-from .views import *
+from django.urls import path
 
-router = routers.DefaultRouter()
-router.register(r"students", views.StudentsViewSet, "students")
-router.register(r"teachers", views.TeachersViewSet, "teachers")
-router.register(r"teacherspercourse",
-                views.TeachersPerCourseViewSet, "teacherspercourse")
+from rest_framework_simplejwt.views import TokenRefreshView
+
+from .views import MyTokenObtainPairView, userDetail
 
 urlpatterns = [
-    path('', include(router.urls)),
-    path('signup/student/', StudentsSignupView.as_view()),
-    path('signup/teacher/', TeachersSignupView.as_view()),
-    path('login/student/',StudentLoginByAuthToken.as_view(), ),
-    path('login/teacher/',TeacherLoginByAuthToken.as_view(), ),
-    path('logout/', LogoutView.as_view()),
-    path('student/dashboard/', StudentsOnlyView.as_view()),
-    path('teacher/dashboard/', TeachersOnlyView.as_view()),
+    path('token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('<enrollment_number>', userDetail),
 ]
-
