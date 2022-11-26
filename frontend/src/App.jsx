@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import { AuthProvider } from "./context/AuthContext";
 import NotFoundPage from "./pages/404";
+import CourseDetailPage from "./pages/CourseDetailPage";
 import CreatePost from "./pages/CreatePost";
 import Forum from "./pages/Forum";
 import HomePage from "./pages/HomePage";
@@ -49,6 +50,14 @@ function App() {
                 element={
                   <PrivateRoute>
                     <UserProfile />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/course/:id"
+                element={
+                  <PrivateRoute>
+                    <CourseDetailPage />
                   </PrivateRoute>
                 }
               />
