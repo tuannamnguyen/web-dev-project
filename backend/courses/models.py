@@ -3,7 +3,7 @@ from users.models import Student
 
 class Course(models.Model):
     name = models.CharField(max_length=100, blank=False)
-    code = models.CharField(max_length=15, blank=False, unique=True)
+    code = models.CharField(max_length=15, primary_key=True)
 
     student = models.ManyToManyField(Student)
 
