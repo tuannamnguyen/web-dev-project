@@ -22,7 +22,7 @@ const PostListItem = ({
         <p className="mb-3">{text}</p>
         <div className="flex items-center gap-x-2">
           <span>
-            <BiLike className="text-xl"/>
+            <BiLike className="text-xl" />
           </span>
           {likes}
         </div>

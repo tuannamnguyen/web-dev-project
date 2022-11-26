@@ -10,14 +10,17 @@ const Announcements = () => {
       .get("/api/announcements/")
       .then((res) => setAnnouncements(res.data))
       .catch((err) => alert(err));
-  }, [])
+  }, []);
 
   return (
     <div>
       <h1 className="text-xl font-semibold mb-3">Announcements</h1>
       <div className="flex flex-col gap-y-3">
         {announcements.map((announcement) => (
-          <AnnouncementListItem key={announcement.id} announcement={announcement} />
+          <AnnouncementListItem
+            key={announcement.id}
+            announcement={announcement}
+          />
         ))}
       </div>
     </div>

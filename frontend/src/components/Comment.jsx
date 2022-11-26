@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { formatDistanceToNow } from "date-fns";
 
 const Comment = ({ comment: { text, user, date_posted } }) => {
-
   return (
     <div>
       <div className="border-b-2 py-2">
