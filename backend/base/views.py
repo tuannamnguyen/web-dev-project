@@ -11,19 +11,19 @@ def timeTableList(request, batch):
     batch = Batch.objects.filter(name=batch.upper()).first()
     day = request.GET.get('day')
     timeTable = TimeTable.objects.filter(batch=batch).filter(day=day)
-    serialzer = TimeTableSerializer(timeTable, many=True)
-    return Response(serialzer.data)
+    serializer = TimeTableSerializer(timeTable, many=True)
+    return Response(serializer.data)
 
 
 @api_view(['GET'])
 def announcementsList(request):
     announcements = Announcement.objects.all()
-    serialzer = AnnouncementSerializer(announcements, many=True)
-    return Response(serialzer.data)
+    serializer = AnnouncementSerializer(announcements, many=True)
+    return Response(serializer.data)
 
 
 @api_view(['GET'])
 def notificationsList(request):
     notifications = Notification.objects.all()
-    serialzer = NotificationSerializer(notifications, many=True)
-    return Response(serialzer.data)
+    serializer = NotificationSerializer(notifications, many=True)
+    return Response(serializer.data)

@@ -2,7 +2,7 @@ from django.db import models
 
 class Batch(models.Model):
     name = models.CharField(
-        max_length=4,
+        max_length=10,
         blank=False
     )
 
