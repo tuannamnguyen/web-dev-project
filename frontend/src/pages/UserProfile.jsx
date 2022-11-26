@@ -45,10 +45,6 @@ const UserProfile = () => {
                   <th>Course Name</th>
                 </tr>
                 {courses.map((course) => (
-                  // <div className="flex gap-x-5">
-                  //   <span>{course.code}</span>
-                  //   <span>{course.name}</span>
-                  // </div>
                   <tr>
                     <td>{course.code}</td>
                     <td>{course.name}</td>
