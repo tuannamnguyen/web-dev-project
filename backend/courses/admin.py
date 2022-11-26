@@ -1,4 +1,5 @@
 from django.contrib import admin
-from .models import Course
+from .models import *
 
-admin.site.register(Course)
+models_list = [Course, CoursePost]
+admin.site.register(models_list)

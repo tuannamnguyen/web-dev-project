@@ -9,3 +9,9 @@ class Course(models.Model):
 
     def __str__(self) -> str:
         return self.name
+    
+class CoursePost(models.Model):
+    courses = models.ForeignKey('courses.Course', on_delete=models.CASCADE)
+    post_time = models.DateTimeField()
+    title = models.CharField(max_length=100)
+    detail = models.TextField()

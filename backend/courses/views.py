@@ -1,9 +1,10 @@
 from rest_framework.response import Response
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view
+from rest_framework import generics
 # from rest_framework.permissions import IsAuthenticated
 
-from .serializers import CourseSerializer
-from .models import Course
+from .serializers import *
+from .models import *
 
 # from users.models import Student
 
@@ -17,3 +18,11 @@ def courseList(request):
     courses = Course.objects.all()
     serializer = CourseSerializer(courses, many=True)
     return Response(serializer.data)
+
+class CoursePostsListView(generics.ListAPIView):
+    serializer_class = CoursePostsSerializer
+
+    def get_queryset(self):
+        courses = self.kwargs['course_code']
+        queryset = CoursePost.objects.filter(courses = courses)
+        return queryset
