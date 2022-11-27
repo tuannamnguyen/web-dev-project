@@ -8,7 +8,7 @@ class Course(models.Model):
     student = models.ManyToManyField(Student)
 
     def __str__(self) -> str:
-        return self.name
+        return self.code
     
 class CoursePost(models.Model):
     courses = models.ForeignKey('courses.Course', on_delete=models.CASCADE)
