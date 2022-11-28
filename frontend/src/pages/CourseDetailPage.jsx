@@ -8,22 +8,22 @@ const CourseDetailPage = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    console.log(params.id);
     axios
-      .get("https://jsonplaceholder.typicode.com/posts")
+      .get("/api/courses/coursepost/" + params.id)
       .then((res) => setPosts(res.data))
       .catch((err) => console.error(err));
-  }, []);
+  }, [params]);
 
   return (
     <Layout>
-      <div>test</div>
+      <h1 className="text-xl font-semibold mb-10">{params.id}</h1>
       {posts &&
         posts.map((post) => {
           return (
             <>
               <h1>{post.title}</h1>
-              <p>{post.body}</p>
+              <p>{post.detail}</p>
+              <p>{post.post_time}</p>
             </>
           );
         })}
