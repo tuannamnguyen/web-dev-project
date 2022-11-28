@@ -1,6 +1,8 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import generics
+from rest_framework.parsers import MultiPartParser, FormParser
+
 # from rest_framework.permissions import IsAuthenticated
 
 from .serializers import *
@@ -21,8 +23,11 @@ def courseList(request):
 
 class CoursePostsListView(generics.ListAPIView):
     serializer_class = CoursePostsSerializer
-
+    parser_classes = (MultiPartParser, FormParser)
     def get_queryset(self):
         courses = self.kwargs['course_code']
         queryset = CoursePost.objects.filter(courses = courses)
         return queryset
+    
+    def perform_create(self, serializer):
+        serializer.save(creator=self.request.user)
