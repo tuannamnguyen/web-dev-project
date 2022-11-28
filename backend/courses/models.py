@@ -17,4 +17,5 @@ class CoursePost(models.Model):
     post_time = models.DateTimeField()
     title = models.CharField(max_length=100)
     detail = models.TextField()
-    image_url = models.ImageField(upload_to=upload_to, blank=True, null=True)
+    image_url = models.FileField(upload_to=upload_to, blank=True, null=True)
+    # file = models.FileField()
