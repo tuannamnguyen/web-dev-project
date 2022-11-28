@@ -9,7 +9,7 @@ class CourseSerializer(ModelSerializer):
         fields = '__all__'
 
 class CoursePostsSerializer(ModelSerializer):
-    image_url = serializers.ImageField(required=False)
+    image_url = serializers.FileField(required=False)
     class Meta:
         model = CoursePost
         fields = '__all__'
