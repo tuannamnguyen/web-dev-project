@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Layout from "../components/Layout";
+import { formatDistanceToNow } from "date-fns";
 
 const CourseDetailPage = () => {
   const params = useParams();
@@ -17,13 +18,16 @@ const CourseDetailPage = () => {
   return (
     <Layout>
       <h1 className="text-xl font-semibold mb-10">{params.id}</h1>
+      <hr/>
       {posts &&
         posts.map((post) => {
           return (
             <>
               <h1>{post.title}</h1>
+              <p>{formatDistanceToNow(new Date(post.post_time))} ago</p>
               <p>{post.detail}</p>
-              <p>{post.post_time}</p>
+              <img src={post.image_url} alt="" />
+              <hr />
             </>
           );
         })}
