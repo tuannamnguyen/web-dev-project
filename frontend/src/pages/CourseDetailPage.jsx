@@ -18,7 +18,8 @@ const CourseDetailPage = () => {
   return (
     <Layout>
       <h1 className="text-xl font-semibold mb-10">{params.id}</h1>
-      <hr/>
+      <hr />
+      {/* TODO: làm css cho phần bên dưới */}
       {posts &&
         posts.map((post) => {
           return (
