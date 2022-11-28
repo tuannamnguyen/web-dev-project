@@ -19,48 +19,16 @@ function App() {
           <Navbar />
           <div className="max-w-7xl mx-auto">
             <Routes>
+              <Route element={<PrivateRoute />}>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/forum" element={<Forum />} />
+                <Route path="/forum/:id" element={<Post />} />
+                <Route path="/forum/create" element={<CreatePost />} />
+                <Route path="/:user" element={<UserProfile />} />
+                <Route path="/course/:id" element={<CourseDetailPage />} />
+              </Route>
               <Route path="/login" element={<LoginPage />} />
-              <Route
-                path="/"
-                element={
-                  <PrivateRoute>
-                    <HomePage />
-                  </PrivateRoute>
-                }
-              />
-              <Route path="/forum" element={<Forum />} />
-              <Route
-                path="/forum/:id"
-                element={
-                  <PrivateRoute>
-                    <Post />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/forum/create"
-                element={
-                  <PrivateRoute>
-                    <CreatePost />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/:user"
-                element={
-                  <PrivateRoute>
-                    <UserProfile />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/course/:id"
-                element={
-                  <PrivateRoute>
-                    <CourseDetailPage />
-                  </PrivateRoute>
-                }
-              />
+
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </div>
