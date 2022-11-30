@@ -2,11 +2,11 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 from rest_framework.response import Response
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import api_view
 
 from .models import User, Student
-from .serializers import UserSerializer, StudentSerializer
+from .serializers import *
+from rest_framework import generics
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
@@ -30,6 +30,12 @@ def userDetail(request, enrollment_number):
         return Response(serializer.data)
     else:
         Response('bye')
+
+class UserList(generics.ListAPIView):
+    serializer_class = UserSerializer
+
+    def get_queryset(self):
+        return User.objects.all()
 
 # @api_view(['GET'])
 # @permission_classes([IsAuthenticated])

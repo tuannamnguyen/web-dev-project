@@ -10,12 +10,16 @@ export default AuthContext;
 export const AuthProvider = ({ children }) => {
   const storedAuthTokens = localStorage.getItem("authTokens");
 
-  const [authTokens, setAuthTokens] = useState(() =>
-    storedAuthTokens ? JSON.parse(storedAuthTokens) : null
-  );
-  const [user, setUser] = useState(() =>
-    storedAuthTokens ? jwtDecode(storedAuthTokens) : null
-  );
+  const [authTokens, setAuthTokens] = useState(() => {
+    if (storedAuthTokens) {
+      JSON.parse(storedAuthTokens);
+    }
+  });
+  const [user, setUser] = useState(() => {
+    if (storedAuthTokens) {
+      jwtDecode(storedAuthTokens);
+    }
+  });
 
   const [loading, setLoading] = useState(true);
 
@@ -35,7 +39,6 @@ export const AuthProvider = ({ children }) => {
         navigate("/");
       })
       .catch((err) => {
-        //TODO: Add Error Handling
         alert(err);
       });
   };
