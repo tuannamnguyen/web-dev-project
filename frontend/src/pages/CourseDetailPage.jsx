@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Layout from "../components/Layout";
 import { formatDistanceToNow } from "date-fns";
 
+import { AiFillFile } from "react-icons/ai";
 const CourseDetailPage = () => {
   const params = useParams();
   const [posts, setPosts] = useState([]);
@@ -17,17 +18,37 @@ const CourseDetailPage = () => {
 
   return (
     <Layout>
-      <h1 className="text-xl font-semibold mb-10">{params.id}</h1>
       <hr />
       {/* TODO: làm css cho phần bên dưới */}
       {posts &&
         posts.map((post) => {
           return (
             <>
-              <h1>{post.title}</h1>
-              <p>{formatDistanceToNow(new Date(post.post_time))} ago</p>
-              <p>{post.detail}</p>
-              <img src={post.image_url} alt="" />
+              <div className=" bg-white p-5 rounded-md hover:shadow-md my-3">
+                <span className="text-sm text-slate-500 mb-1">
+                  {post.post_time}
+                </span>
+                <details>
+                  <summary class="text-lg font-semibold mb-3 cursor-pointer">
+                    {post.title}
+                  </summary>
+                  <div class="mb-3">
+                    <p>{post.detail} </p>
+                    {post.media_url && (
+                      <>
+                        {post.media_url && (
+                          <>
+                            <AiFillFile size={65} />
+                            <span>
+                              <a href={post.media_url}></a>
+                            </span>
+                          </>
+                        )}
+                      </>
+                    )}
+                  </div>
+                </details>
+              </div>
               <hr />
             </>
           );
