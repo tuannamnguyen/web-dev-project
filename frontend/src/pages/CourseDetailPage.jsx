@@ -16,6 +16,10 @@ const CourseDetailPage = () => {
       .catch((err) => console.error(err));
   }, [params]);
 
+  function mediaURL(url) {
+    return url.substring(url.lastIndexOf("/") + 1);
+  }
+  
   return (
     <Layout>
       <hr />
@@ -32,15 +36,20 @@ const CourseDetailPage = () => {
                   <summary class="text-lg font-semibold mb-3 cursor-pointer">
                     {post.title}
                   </summary>
-                  <div class="mb-3">
+                  <div class="">
                     <p>{post.detail} </p>
                     {post.media_url && (
                       <>
                         {post.media_url && (
                           <>
-                            <AiFillFile size={65} />
                             <span>
-                              <a href={post.media_url}></a>
+                              <a
+                                className="bg-white rounded-md hover:shadow-md"
+                                href={post.media_url}
+                              >
+                                <AiFillFile size={65} />
+                                {mediaURL(post.media_url)}
+                              </a>
                             </span>
                           </>
                         )}
