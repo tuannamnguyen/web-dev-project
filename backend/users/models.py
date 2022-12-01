@@ -36,16 +36,18 @@ class User(AbstractUser):
 
     STUDENT = 'S'
     TEACHER = 'T'
+    ADMIN = 'A'
 
     USER_TYPE_CHOICES = (
         (STUDENT, 'Student'),
         (TEACHER, 'Teacher'),
+        (ADMIN, 'Admin'),
     )
 
     user_type = models.CharField(
         max_length=1,
         choices=USER_TYPE_CHOICES,
-        default=STUDENT
+        default=ADMIN
     )
 
     USERNAME_FIELD = 'enrollment_number'
