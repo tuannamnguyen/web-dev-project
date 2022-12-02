@@ -1,102 +1,49 @@
-from rest_framework import viewsets,permissions,generics,status
-from users.serializers import *
-from .models import *
-from rest_framework.views import APIView
-# Create your views here.
-from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
-from django.utils.decorators import method_decorator
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+
 from rest_framework.response import Response
-from django.contrib import auth
-from rest_framework.authtoken.views import ObtainAuthToken
-from .permission import IsStudentUser, IsTeacherUser
+from rest_framework.decorators import api_view
 
-class StudentsViewSet(viewsets.ModelViewSet):
-    serializer_class = StudentsSerializer
-   
+from .models import User, Student
+from .serializers import *
+from rest_framework import generics
+
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+        token['enrollment_number'] = user.enrollment_number
+        token['first_name'] = user.first_name
+        token['batch'] = user.student.batch.name
+
+        return token
+
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
+
+@api_view(['GET'])
+def userDetail(request, enrollment_number):
+    user = User.objects.filter(enrollment_number=enrollment_number).first()
+    if (user.user_type == 'S'):
+        student = Student.objects.get(user=user)
+        serializer = StudentSerializer(student)
+        return Response(serializer.data)
+    else:
+        Response('bye')
+
+class UserList(generics.ListAPIView):
+    serializer_class = UserSerializer
+
     def get_queryset(self):
-        return Students.objects.all()
+        return User.objects.all()
 
-
-class TeachersViewSet(viewsets.ModelViewSet):
-    serializer_class = TeachersSerializer
-    
-    def get_queryset(self):
-        return Teachers.objects.all()
-
-
-class TeachersPerCourseViewSet(viewsets.ModelViewSet):
-    serializer_class = TeachersPerCourseSerializer
-
-    def get_queryset(self):
-        return TeachersPerCourse.objects.all()
-
-class StudentsSignupView(generics.GenericAPIView):
-    serializer_class=StudentsSignupSerializer
-    def post(self, request, *args, **kwargs):
-        serializer=self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user=serializer.save()
-        return Response({
-            "user":UserSerializer(user, context=self.get_serializer_context()).data,
-            "token":Token.objects.get(user=user).key,
-            "message":"account created successfully"
-        })
-
-
-class TeachersSignupView(generics.GenericAPIView):
-    serializer_class=TeachersSignupSerializer
-    def post(self, request, *args, **kwargs):
-        serializer=self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user=serializer.save()
-        return Response({
-            "user":UserSerializer(user, context=self.get_serializer_context()).data,
-            "token":Token.objects.get(user=user).key,
-            "message":"account created successfully"
-        })
-
-class StudentLoginByAuthToken(ObtainAuthToken):
-    def post(self, request, *args, **kwargs):
-        serializer=self.serializer_class(data=request.data, context={'request':request})
-        serializer.is_valid(raise_exception=True)
-        user=serializer.validated_data['user']
-        token, created=Token.objects.get_or_create(user=user)
-        return Response({
-            'token':token.key,
-            'user_id':user.id,
-            'is_teacher':user.is_teacher,
-            'is_student':user.is_student
-        })
-
-class TeacherLoginByAuthToken(ObtainAuthToken):
-    def post(self, request, *args, **kwargs):
-        serializer=self.serializer_class(data=request.data, context={'request':request})
-        serializer.is_valid(raise_exception=True)
-        user=serializer.validated_data['user']
-        token, created=Token.objects.get_or_create(user=user)
-        return Response({
-            'token':token.key,
-            'user_id':user.id,
-            'is_teacher':user.is_teacher,
-            'is_student':user.is_student
-        })
-
-class LogoutView(APIView):
-    def post(self, request, format=None):
-        request.auth.delete()
-        return Response(status=status.HTTP_200_OK)
-
-
-class TeachersOnlyView(generics.RetrieveAPIView):
-    permission_classes=[permissions.IsAuthenticated&IsTeacherUser]
-    serializer_class=UserSerializer
-
-    def get_object(self):
-        return self.request.user
-
-class StudentsOnlyView(generics.RetrieveAPIView):
-    permission_classes=[permissions.IsAuthenticated&IsStudentUser]
-    serializer_class=UserSerializer
-
-    def get_object(self):
-        return self.request.user
+# @api_view(['GET'])
+# @permission_classes([IsAuthenticated])
+# def userDetail(request):
+#     user = request.user
+#     if (user.user_type == 'S'):
+#         student = Student.objects.get(user=user)
+#         serializer = StudentSerializer(student)
+#         return Response(serializer.data)
+#     else:
+#         Response('bye')

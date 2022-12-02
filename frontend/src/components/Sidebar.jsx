@@ -1,15 +1,14 @@
-import React from 'react'
-import PropTypes from 'prop-types';
-import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
-import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
+import Announcements from "./Announcements";
+import TimeTableList from "./TimeTableList";
 
-export default function Sidebar() {
+const Sidebar = () => {
   return (
-    <Paper elavation={3}>
-      <p>Test sidebar</p>
-    </Paper>
+    <div className="flex flex-col gap-y-10">
+      {/* <h1 className="text-3xl font-semibold mb-10">Explore</h1> */}
+      <TimeTableList />
+      <Announcements />
+    </div>
   );
-}
+};
+
+export default Sidebar;

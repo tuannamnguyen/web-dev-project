@@ -1,61 +1,69 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, BaseUserManager
-from django.db.models.signals import post_save
-from django.dispatch import receiver
+from django.contrib.auth.base_user import BaseUserManager
+from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
-from django.db import models
-from django.db.models.signals import post_save
-from django.conf import settings
-from django.dispatch import receiver
-from django.contrib.auth.models import AbstractUser
-from rest_framework.authtoken.models import Token
-from django.db import models
-from django.db.models.signals import post_save
-from django.conf import settings
-from django.dispatch import receiver
-from django.contrib.auth.models import AbstractUser
-from rest_framework.authtoken.models import Token
-# Create your models here.
+
+from base.models import Batch
+
+class UserManager(BaseUserManager):
+    def create_user(self, enrollment_number, first_name, password, **extra_fields):
+        if not enrollment_number:
+            raise ValueError(_("The Enrollment Number must be set"))
+        user = self.model(enrollment_number=enrollment_number, first_name=first_name, **extra_fields)
+        user.set_password(password)
+        user.save()
+        return user
+
+    def create_superuser(self, enrollment_number, first_name, password, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('is_active', True)
+
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError(_('Superuser must have is_staff=True.'))
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError(_('Superuser must have is_superuser=True.'))
+
+        return self.create_user(enrollment_number, first_name, password, **extra_fields)
+
 
 class User(AbstractUser):
-    is_student=models.BooleanField(default=False)
-    is_teacher=models.BooleanField(default=False)
+    username = None
+    enrollment_number = models.CharField(max_length=9, unique=True)
 
-    def __str__(self) :
-        return self.username
-        
-@receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def create_auth_token(sender, instance=None, created=False, **kwargs):
-    if created:
-        Token.objects.create(user=instance)
+    first_name = models.CharField(max_length=50, blank=False)
+    last_name = models.CharField(max_length=50, blank=True)
 
+    STUDENT = 'S'
+    TEACHER = 'T'
+    ADMIN = 'A'
 
-class Students(models.Model):
-    user=models.OneToOneField(User, related_name="student", on_delete=models.CASCADE)
-    email = models.EmailField()
-    birth_date = models.CharField(max_length=10, blank=True, null=True)
-    phone_number = models.CharField(max_length=30, blank=True, default='')
+    USER_TYPE_CHOICES = (
+        (STUDENT, 'Student'),
+        (TEACHER, 'Teacher'),
+        (ADMIN, 'Admin'),
+    )
 
-    def __str__(self):
-        return self.user.username
+    user_type = models.CharField(
+        max_length=1,
+        choices=USER_TYPE_CHOICES,
+        default=ADMIN
+    )
 
+    USERNAME_FIELD = 'enrollment_number'
+    REQUIRED_FIELDS = ['first_name']
 
+    objects = UserManager()
 
-class Teachers(models.Model):
-    user=models.OneToOneField(User, related_name="teacher", on_delete=models.CASCADE)
-    teacher_name = models.CharField(max_length=100)
-    email = models.EmailField()
-    phone_number = models.CharField(max_length=30, blank=True, default='')
+class Student(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    batch = models.ForeignKey(Batch, on_delete=models.SET_NULL, null=True)
 
-    def __str__(self):
-        return self.teacher_name
+    def __str__(self) -> str:
+        return f'{self.user.first_name}'
 
+class Teacher(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 
-class TeachersPerCourse(models.Model):
-    courses = models.ForeignKey('courses.Courses', on_delete=models.CASCADE)
-    teachers = models.ForeignKey('users.Teachers', on_delete=models.CASCADE)
-
-    class Meta: 
-        constraints = [
-            models.UniqueConstraint('courses', 'teachers', name='tpc_unique')
-        ]
+    def __str__(self) -> str:
+        return f'{self.user.first_name}'

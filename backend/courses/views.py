@@ -1,31 +1,33 @@
-from rest_framework import viewsets
-from .models import *
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from rest_framework import generics
+from rest_framework.parsers import MultiPartParser, FormParser
+
+# from rest_framework.permissions import IsAuthenticated
+
 from .serializers import *
+from .models import *
+
+# from users.models import Student
 
 
-class CoursesViewSet(viewsets.ModelViewSet):
-    serializer_class = CoursesSerializer
+@api_view(['GET'])
+# @permission_classes([IsAuthenticated])
+def courseList(request):
+    user = request.user
+    # student = Student.objects.get(user=user)
+    # courses = student.course_set.all()
+    courses = Course.objects.all()
+    serializer = CourseSerializer(courses, many=True)
+    return Response(serializer.data)
 
+class CoursePostsListView(generics.ListAPIView):
+    serializer_class = CoursePostsSerializer
+    parser_classes = (MultiPartParser, FormParser)
     def get_queryset(self):
-        return Courses.objects.all()
-
-
-class EnrollmentsViewSet(viewsets.ModelViewSet):
-    serializer_class = EnrollmentsSerializer
-
-    def get_queryset(self):
-        return Enrollments.objects.all()
-
-
-class ClassesViewSet(viewsets.ModelViewSet):
-    serializer_class = ClassesSerializer
-
-    def get_queryset(self):
-        return Classes.objects.all()
-
-
-class AttendanceViewSet(viewsets.ModelViewSet):
-    serializer_class = AttendanceSerializer
-
-    def get_queryset(self):
-        return Attendance.objects.all()
+        courses = self.kwargs['course_code']
+        queryset = CoursePost.objects.filter(courses = courses)
+        return queryset
+    
+    def perform_create(self, serializer):
+        serializer.save(creator=self.request.user)
