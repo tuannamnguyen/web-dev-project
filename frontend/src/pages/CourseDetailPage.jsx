@@ -1,8 +1,10 @@
 import axios from "axios";
+import * as React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Layout from "../components/Layout";
+
 import { formatDistanceToNow } from "date-fns";
+import Layout from "../components/Layout";
 
 import { AiFillFile } from "react-icons/ai";
 const CourseDetailPage = () => {
@@ -19,7 +21,7 @@ const CourseDetailPage = () => {
   function mediaURL(url) {
     return url.substring(url.lastIndexOf("/") + 1);
   }
-  
+
   return (
     <Layout>
       <hr />

@@ -1,6 +1,7 @@
 import { formatDistanceToNow } from "date-fns";
-import { Link } from "react-router-dom";
+import * as React from "react";
 import { BiLike } from "react-icons/bi";
+import { Link } from "react-router-dom";
 import { capitalize } from "../utils/helpers";
 
 const PostListItem = ({

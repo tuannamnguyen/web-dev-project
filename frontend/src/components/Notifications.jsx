@@ -1,3 +1,4 @@
+import * as React from "react";
 import { BiX } from "react-icons/bi";
 
 const Notifications = ({ notifications, setIsOpen }) => {

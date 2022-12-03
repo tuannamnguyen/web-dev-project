@@ -1,3 +1,4 @@
+import * as React from "react";
 import { FiClock } from "react-icons/fi";
 import { formatTime } from "../utils/helpers";
 

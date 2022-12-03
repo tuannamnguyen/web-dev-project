@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
 import { formatDistanceToNow } from "date-fns";
+import * as React from "react";
+import { Link } from "react-router-dom";
 
 const Comment = ({ comment: { text, user, date_posted } }) => {
   return (

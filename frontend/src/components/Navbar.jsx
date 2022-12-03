@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import { capitalize } from "../utils/helpers";
 
+import axios from "axios";
+import * as React from "react";
 import { BiBell, BiUserCircle } from "react-icons/bi";
 import Notifications from "./Notifications";
-import axios from "axios";
 
 const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);

@@ -1,3 +1,4 @@
+import * as React from "react";
 import Announcements from "./Announcements";
 import TimeTableList from "./TimeTableList";
 

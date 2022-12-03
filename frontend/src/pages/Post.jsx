@@ -1,8 +1,10 @@
-import { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { formatDistanceToNow } from "date-fns";
-import { BiLike, BiDotsVerticalRounded } from "react-icons/bi";
+import * as React from "react";
+import { useContext, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+
+import { BiDotsVerticalRounded, BiLike } from "react-icons/bi";
 
 import Comment from "../components/Comment";
 import Layout from "../components/Layout";

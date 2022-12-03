@@ -1,3 +1,4 @@
+import * as React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import { AuthProvider } from "./context/AuthContext";
@@ -9,6 +10,7 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import Post from "./pages/Post";
 import UserProfile from "./pages/UserProfile";
+
 import PrivateRoute from "./utils/PrivateRoute";
 
 function App() {
