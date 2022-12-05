@@ -1,4 +1,3 @@
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 from rest_framework.response import Response
@@ -8,15 +7,7 @@ from .models import User, Student
 from .serializers import *
 from rest_framework import generics
 
-class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
-    @classmethod
-    def get_token(cls, user):
-        token = super().get_token(user)
-        token['enrollment_number'] = user.enrollment_number
-        token['first_name'] = user.first_name
-        token['batch'] = user.student.batch.name
 
-        return token
 
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
