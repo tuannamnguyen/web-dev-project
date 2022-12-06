@@ -22,7 +22,7 @@ const CourseList = () => {
         setCourses(res.data);
       })
       .catch((err) => console.error(err));
-  }, [authTokens.access]);
+  }, [authTokens.access, user.user_id]);
 
   return (
     <div>
