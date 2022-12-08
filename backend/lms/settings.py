@@ -64,7 +64,7 @@ ROOT_URLCONF = 'lms.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'build'],
+        'DIRS': [BASE_DIR.parent / 'frontend'/ 'build'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -137,7 +137,7 @@ This bit below is key - this provides a list of directories that
 Django will look into for additional static assets. In our case, we want Django to collect the static assets created by our frontend build process
 """
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'build/static'),
+    os.path.join(BASE_DIR, 'frontend/build/static'),
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
