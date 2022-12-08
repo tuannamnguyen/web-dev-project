@@ -18,4 +18,3 @@ class CoursePost(models.Model):
     title = models.CharField(max_length=100)
     detail = models.TextField()
     media_url = models.FileField(upload_to=upload_to, blank=True, null=True)
-    # file = models.FileField()

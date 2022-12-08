@@ -139,8 +139,14 @@ Django will look into for additional static assets. In our case, we want Django 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'build/static'),
 ]
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'mediafiles')
+
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -181,5 +187,4 @@ SIMPLE_JWT = {
 
 
 
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'mediafiles')
-MEDIA_URL = '/media/'
+
