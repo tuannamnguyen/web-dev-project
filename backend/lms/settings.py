@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-w-(+k059g6ty)o3b*d3e*5bfsl(l1m5525$2)wg6a$*b0+-#sd'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DJANGO_ENV') == 'development'
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -137,7 +137,7 @@ This bit below is key - this provides a list of directories that
 Django will look into for additional static assets. In our case, we want Django to collect the static assets created by our frontend build process
 """
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'frontend/build/static'),
+    os.path.join(BASE_DIR.parent, 'frontend/build/static'),
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
