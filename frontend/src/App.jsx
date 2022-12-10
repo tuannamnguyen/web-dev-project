@@ -9,6 +9,7 @@ import Forum from "./pages/Forum";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import Post from "./pages/Post";
+import Search from "./pages/Search";
 import UserProfile from "./pages/UserProfile";
 
 import PrivateRoute from "./utils/PrivateRoute";
@@ -23,6 +24,8 @@ function App() {
             <Routes>
               <Route element={<PrivateRoute />}>
                 <Route path="/" element={<HomePage />} />
+                <Route path={"/courses"} element={<HomePage />} />
+                <Route path={"/search"} element={<Search />} />
                 <Route path="/forum" element={<Forum />} />
                 <Route path="/forum/:id" element={<Post />} />
                 <Route path="/forum/create" element={<CreatePost />} />

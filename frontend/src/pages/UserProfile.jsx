@@ -3,6 +3,7 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Layout from "../components/Layout";
+import NavigationBar from "../components/NavigationBar";
 
 const UserProfile = () => {
   const [user, setUser] = useState(null);
@@ -30,33 +31,36 @@ const UserProfile = () => {
   }, [user?.user?.id]);
 
   return (
-    <Layout title="Profile">
-      {loading ? null : (
-        <div className="flex flex-col gap-y-5">
-          <div className="bg-white p-5 rounded-md">
-            <h1 className="mb-5 text-lg font-semibold">{`${user.user.first_name} ${user.user.last_name}`}</h1>
-            <span>{user.batch.name}</span>
-          </div>
-          <div className="bg-white p-5 rounded-md">
-            <h1 className="mb-5 text-lg font-semibold">Your Courses</h1>
-            <div>
-              <table className="text-left w-full">
-                <tr>
-                  <th>Course Code</th>
-                  <th>Course Name</th>
-                </tr>
-                {courses.map((course) => (
+    <>
+      <NavigationBar arr={[{link: "/", text: "Trang chủ"}, {link: window.location.pathname, text: "Thông tin người dùng"}]} />
+      <Layout title="Chi tiết người dùng">
+        {loading ? null : (
+          <div className="flex flex-col gap-y-5">
+            <div className="bg-white p-5 rounded-md">
+              <h1 className="mb-5 text-lg font-semibold">{`${user.user.first_name} ${user.user.last_name}`}</h1>
+              <span>{user.batch.name}</span>
+            </div>
+            <div className="bg-white p-5 rounded-md">
+              <h1 className="mb-5 text-lg font-semibold">Khóa học của bạn</h1>
+              <div>
+                <table className="text-left w-full">
                   <tr>
-                    <td>{course.code}</td>
-                    <td>{course.name}</td>
+                    <th>Mã môn</th>
+                    <th>Tên môn</th>
                   </tr>
-                ))}
-              </table>
+                  {courses.map((course, key) => (
+                    <tr key={key}>
+                      <td>{course.code}</td>
+                      <td>{course.name}</td>
+                    </tr>
+                  ))}
+                </table>
+              </div>
             </div>
           </div>
-        </div>
-      )}
-    </Layout>
+        )}
+      </Layout>
+    </>
   );
 };
 
