@@ -22,12 +22,12 @@ const UserProfile = () => {
 
   useEffect(() => {
     axios
-      .get(`/api/courses`)
+      .get(`/api/courses/${user?.user?.id}`)
       .then((res) => {
         setCourses(res.data);
       })
       .catch((err) => console.error(err));
-  }, []);
+  }, [user?.user?.id]);
 
   return (
     <Layout title="Profile">

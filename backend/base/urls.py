@@ -4,6 +4,6 @@ from . import views
 
 urlpatterns = [
     path('time-table/<batch>', views.timeTableList),
-    path('announcements/', views.announcementsList),
-    path('notifications/', views.notificationsList),
+    path('announcements/', views.announcementsList.as_view()),
+    path('notifications/', views.notificationsList.as_view()),
 ]

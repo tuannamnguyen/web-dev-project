@@ -27,14 +27,3 @@ class UserList(generics.ListAPIView):
 
     def get_queryset(self):
         return User.objects.all()
-
-# @api_view(['GET'])
-# @permission_classes([IsAuthenticated])
-# def userDetail(request):
-#     user = request.user
-#     if (user.user_type == 'S'):
-#         student = Student.objects.get(user=user)
-#         serializer = StudentSerializer(student)
-#         return Response(serializer.data)
-#     else:
-#         Response('bye')
