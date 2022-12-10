@@ -15,7 +15,7 @@ const Announcements = () => {
 
   return (
     <div>
-      <h1 className="text-xl font-semibold mb-3">Announcements</h1>
+      <h1 className="text-xl font-semibold mb-3">Sự kiện</h1>
       <div className="flex flex-col gap-y-3">
         {announcements.map((announcement) => (
           <AnnouncementListItem

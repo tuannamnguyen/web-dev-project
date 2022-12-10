@@ -5,13 +5,13 @@ const Notifications = ({ notifications, setIsOpen }) => {
   console.log(notifications);
   return (
     <div className="absolute top-[-18px] right-[-28px] max-w-sm">
-      <div className="bg-white text-black shadow-2xl p-4 rounded-md">
+      <div className="bg-black text-black shadow-2xl p-4 rounded-md">
         <div className="flex justify-between mb-3 px-3">
           <h1 className="font-semibold text-xl text-slate-500">
             Notifications
           </h1>
           <button onClick={() => setIsOpen(false)}>
-            <BiX />
+            <BiX color="#000" style={{color: "#000", fill: "#000"}} />
           </button>
         </div>
         <div className="flex flex-col gap-y-2">

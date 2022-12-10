@@ -11,23 +11,23 @@ const LoginPage = () => {
         <form onSubmit={loginUser}>
           <div className="mb-4">
             <label htmlFor="enrollment_number" className="block mb-2">
-              Enrollment Number
+              Tên đăng nhập
             </label>
             <input
               type="text"
               name="enrollment_number"
-              placeholder="Enter Enrollment Number"
+              placeholder="Nhập tên đăng nhập"
               className="form-input rounded w-full"
             />
           </div>
           <div className="mb-6">
             <label htmlFor="password" className="block mb-2">
-              Password
+              Mật khẩu
             </label>
             <input
               type="password"
               name="password"
-              placeholder="Enter password"
+              placeholder="Nhập mật khẩu"
               className="form-input rounded w-full"
             />
           </div>
@@ -35,7 +35,7 @@ const LoginPage = () => {
             type="submit"
             className="w-full p-3 rounded bg-sky-800 text-white hover:bg-sky-900"
           >
-            Log In
+            Đăng nhập
           </button>
         </form>
       </div>
