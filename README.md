@@ -40,5 +40,20 @@
 - Waitress
 - CSDL MySQL
 
-## Hướng dẫn cài đặt và sử dụng sản phẩm
+## Hướng dẫn cài đặt và sử dụng sản phẩm đối với môi trường development
+
+- Clone mã nguồn về
+- Tạo database với tên w42g2_lms trong MySQL
+- Mở 2 terminal, 1 terminal `cd` tới thư mục frontend, 1 terminal `cd` thư mục backend
+- Trong terminal backend
+  - Tạo và khởi động một virtual environment
+  - Chạy lệnh `pip install -r requirements.txt`
+  - Chạy lệnh `python manage.py migrate`
+  - Chạy lệnh `python manage.py runserver`
+- Trong terminal frontend
+  - Chạy lệnh `npm install`
+  - Chạy lệnh `npm start`
+- Gõ [localhost:3000](localhost:3000) trong browser để được đưa tới trang web sản phẩm
+
+## Hướng dẫn build cho môi trường production
 
