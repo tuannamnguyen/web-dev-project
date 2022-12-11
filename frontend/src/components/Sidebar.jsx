@@ -12,12 +12,12 @@ import { RxDotFilled } from "react-icons/rx";
 import { memo } from "react";
 
 const Sidebar = () => {
-  const { user, authTokens } = useContext(AuthContext);
+  const { authTokens, user } = useContext(AuthContext);
   const [listCourses, setListCourses] = useState([]);
   useEffect(() => {
     let a = [];
     axios
-      .get("/api/courses", {
+      .get("/api/courses/" + user.user_id, {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + String(authTokens.access),
@@ -29,7 +29,7 @@ const Sidebar = () => {
       })
       .catch((err) => console.error(err));
     return () => setListCourses(a);
-  }, [authTokens.access]);
+  }, [authTokens.access, user.user_id]);
   return (
     <div className="flex flex-col gap-y-10">
       <div>

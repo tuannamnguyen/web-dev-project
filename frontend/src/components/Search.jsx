@@ -8,12 +8,12 @@ import OutsideClickHandler from "react-outside-click-handler";
 
 const SearchComponent = () => {
   const [courses, setCourses] = useState([]);
-  const { authTokens } = useContext(AuthContext);
+  const { authTokens, user } = useContext(AuthContext);
   const [searchResultCourses, setSearchResultCourses] = useState([]);
   const [open, setOpen] = useState(false);
   useEffect(() => {
     axios
-      .get("/api/courses", {
+      .get("/api/courses/" + user.user_id, {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + String(authTokens.access),
@@ -23,7 +23,7 @@ const SearchComponent = () => {
         setCourses(res.data);
       })
       .catch((err) => console.error(err));
-  }, [authTokens.access]);
+  }, [authTokens.access, user.user_id]);
   const options = {
     keys: ["code", "name"],
   };
