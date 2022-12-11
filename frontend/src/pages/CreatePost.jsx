@@ -57,11 +57,11 @@ const CreatePost = (props) => {
             className="w-full"
           />
         </div>
-        <div className="flex justify-end" style={{gap: 16}}>
+        <div className="flex justify-end" style={{ gap: 16 }}>
           <input
-            onClick={(e)=> {
-              e.preventDefault()
-              props?.setOpen(false)
+            onClick={(e) => {
+              e.preventDefault();
+              props?.setOpen(false);
             }}
             type="submit"
             value="Huỷ"

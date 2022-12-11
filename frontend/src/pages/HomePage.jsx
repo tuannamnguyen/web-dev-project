@@ -5,8 +5,13 @@ import NavigationBar from "../components/NavigationBar";
 
 const HomePage = () => {
   return (
-    <> 
-      <NavigationBar arr={[{link: "/", text: "Trang chủ"}, {link: "/courses", text: "Khóa học"}]} />
+    <>
+      <NavigationBar
+        arr={[
+          { link: "/", text: "Trang chủ" },
+          { link: "/courses", text: "Khóa học" },
+        ]}
+      />
       <Layout title="Tổng quan khóa học">
         <CourseList />
       </Layout>

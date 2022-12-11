@@ -18,7 +18,6 @@ const Post = (props) => {
 
   const { user } = useContext(AuthContext);
 
-
   const addComment = (e) => {
     e.preventDefault();
     axios
@@ -90,16 +89,16 @@ const Post = (props) => {
             value={comment}
             onChange={(e) => setComment(e.target.value)}
           />
-          <div className="flex justify-end" style={{gap: 16}}>
+          <div className="flex justify-end" style={{ gap: 16 }}>
             <input
-              onClick={(e)=> {
-                e.preventDefault()
-                props?.setOpen(false)
+              onClick={(e) => {
+                e.preventDefault();
+                props?.setOpen(false);
               }}
               type="submit"
               value="Hủy"
               className="bg-cyan-800 text-white p-2 rounded cursor-pointer"
-              />
+            />
             <input
               type="submit"
               value="Bình luận"

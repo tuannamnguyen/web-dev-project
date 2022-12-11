@@ -11,11 +11,11 @@ const PostListItem = ({
 }) => {
   let date_posted_formatted = formatDistanceToNow(new Date(date_posted));
   date_posted_formatted = capitalize(date_posted_formatted);
-  const [openComment, setOpenComment]= useState(false)
+  const [openComment, setOpenComment] = useState(false);
 
   return (
     <>
-      <div onClick={()=> setOpenComment(prev=> !prev)}>
+      <div onClick={() => setOpenComment((prev) => !prev)}>
         <div className="bg-white p-5 rounded-md hover:shadow-md">
           <span className="text-sm text-slate-500 mb-1">
             {date_posted_formatted} ago by{" "}
@@ -33,9 +33,7 @@ const PostListItem = ({
           </div>
         </div>
       </div>
-      {
-        openComment=== true && <Post setOpen={setOpenComment} id={id}/> 
-      }
+      {openComment === true && <Post setOpen={setOpenComment} id={id} />}
     </>
   );
 };

@@ -11,7 +11,7 @@ const Notifications = ({ notifications, setIsOpen }) => {
             Notifications
           </h1>
           <button onClick={() => setIsOpen(false)}>
-            <BiX color="#000" style={{color: "#000", fill: "#000"}} />
+            <BiX color="#000" style={{ color: "#000", fill: "#000" }} />
           </button>
         </div>
         <div className="flex flex-col gap-y-2">

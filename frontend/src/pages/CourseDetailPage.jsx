@@ -25,7 +25,16 @@ const CourseDetailPage = () => {
 
   return (
     <>
-      <NavigationBar arr={[{link: "/", text: "Trang chủ"}, {link: "/courses", text: "Khóa học"}, {link: window.location.pathname, text: window.location.pathname.split("/")[2]}]} />
+      <NavigationBar
+        arr={[
+          { link: "/", text: "Trang chủ" },
+          { link: "/courses", text: "Khóa học" },
+          {
+            link: window.location.pathname,
+            text: window.location.pathname.split("/")[2],
+          },
+        ]}
+      />
       <Layout>
         <hr />
         {/* TODO: làm css cho phần bên dưới */}

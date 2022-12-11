@@ -32,7 +32,12 @@ const UserProfile = () => {
 
   return (
     <>
-      <NavigationBar arr={[{link: "/", text: "Trang chủ"}, {link: window.location.pathname, text: "Thông tin người dùng"}]} />
+      <NavigationBar
+        arr={[
+          { link: "/", text: "Trang chủ" },
+          { link: window.location.pathname, text: "Thông tin người dùng" },
+        ]}
+      />
       <Layout title="Chi tiết người dùng">
         {loading ? null : (
           <div className="flex flex-col gap-y-5">
