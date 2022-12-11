@@ -5,10 +5,11 @@
 ## Thành viên
 
 - Nguyễn Tuấn Nam - frontend, backend, deploy
-- Bùi Minh Sơn - backend
 - Đỗ Anh Tú - frontend
 - Đỗ Minh Quân - frontend
 - Nông Ngọc Sơn - frontend
+- Nguyễn Phú Đức - frontend
+- Bùi Minh Sơn - backend
 - Phan Duy Thắng - backend
 
 ## Đề tài nhóm
@@ -57,3 +58,17 @@
 
 ## Hướng dẫn build cho môi trường production
 
+- Clone mã nguồn về
+- Tạo database với tên w42g2_lms trong MySQL
+- Mở 2 terminal, 1 terminal `cd` tới thư mục frontend, 1 terminal `cd` thư mục backend
+- Trong terminal frontend
+  - Chạy lệnh `npm install`
+  - Chạy lệnh `npm run build`
+- Trong terminal backend
+  - Tạo và khởi động một virtual environment
+  - Chạy lệnh `pip install -r requirements.txt`
+  - Chạy lệnh `python manage.py migrate`
+  - Chạy lệnh `python manage.py collectstatic`
+  - Chạy lệnh `expose 8080`
+  - Chạy lệnh `waitress-serve --host 10.244.1.205 lms.wsgi:application`
+- Gõ [w42g2.int3306.freeddns.org](w42g2.int3306.freeddns.org) trong browser để được đưa tới trang web sản phẩm
