@@ -1,22 +1,23 @@
-import * as React from "react";
-import CourseList from "../components/CourseList";
+import React from "react";
+// import CourseList from '../components/CourseList'
 import Layout from "../components/Layout";
 import NavigationBar from "../components/NavigationBar";
+import SearchComponent from "../components/Search";
 
-const HomePage = () => {
+const Search = () => {
   return (
     <>
       <NavigationBar
         arr={[
           { link: "/", text: "Trang chủ" },
-          { link: "/courses", text: "Khóa học" },
+          { link: "/search", text: "Tìm kiếm" },
         ]}
       />
       <Layout title="Tổng quan khóa học">
-        <CourseList />
+        <SearchComponent />
       </Layout>
     </>
   );
 };
 
-export default HomePage;
+export default Search;
