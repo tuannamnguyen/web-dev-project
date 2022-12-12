@@ -74,7 +74,7 @@
   - Chạy lệnh `python manage.py migrate`
   - Chạy lệnh `python manage.py collectstatic`
   - Chạy lệnh `expose 8080`
-  - Chạy lệnh `waitress-serve --host 10.244.1.205 lms.wsgi:application`
+  - Chạy lệnh `waitress-serve --host <địa chỉ ip khi chạy lệnh expose> lms.wsgi:application`
 - Gõ [w42g2.int3306.freeddns.org](w42g2.int3306.freeddns.org) trong browser để được đưa tới trang web sản phẩm
 
 ## Tài khoản mẫu
