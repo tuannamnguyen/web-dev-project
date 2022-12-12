@@ -41,10 +41,14 @@
 - Waitress
 - CSDL MySQL
 
+### Kiến trúc tổng quan
+
+![Kiến trúc tổng quan](https://www.saaspegasus.com/static/images/web/modern-javascript/js-pipeline-with-django.56456c10739f.png)
+
 ## Hướng dẫn cài đặt và sử dụng sản phẩm đối với môi trường development
 
 - Clone mã nguồn về
-- Tạo database với tên w42g2_lms trong MySQL
+- Tạo database với tên w42g2_lms trong MySQL và import data từ file Dump20221212.sql
 - Mở 2 terminal, 1 terminal `cd` tới thư mục frontend, 1 terminal `cd` thư mục backend
 - Trong terminal backend
   - Tạo và khởi động một virtual environment
@@ -59,7 +63,7 @@
 ## Hướng dẫn build cho môi trường production
 
 - Clone mã nguồn về
-- Tạo database với tên w42g2_lms trong MySQL
+- Tạo database với tên w42g2_lms trong MySQL và import data từ file Dump20221212.sql 
 - Mở 2 terminal, 1 terminal `cd` tới thư mục frontend, 1 terminal `cd` thư mục backend
 - Trong terminal frontend
   - Chạy lệnh `npm install`
