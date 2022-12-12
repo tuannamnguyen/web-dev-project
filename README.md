@@ -75,7 +75,7 @@
   - Chạy lệnh `python manage.py collectstatic`
   - Chạy lệnh `expose 8080`
   - Chạy lệnh `waitress-serve --host <địa chỉ ip khi chạy lệnh expose> lms.wsgi:application`
-- Gõ [w42g2.int3306.freeddns.org](w42g2.int3306.freeddns.org) trong browser để được đưa tới trang web sản phẩm
+- Gõ [w42g2.int3306.freeddns.org](http://w42g2.int3306.freeddns.org/login) trong browser để được đưa tới trang web sản phẩm
 
 ## Tài khoản mẫu
 
