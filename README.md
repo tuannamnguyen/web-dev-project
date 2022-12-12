@@ -63,7 +63,7 @@
 ## Hướng dẫn build cho môi trường production
 
 - Clone mã nguồn về
-- Tạo database với tên w42g2_lms trong MySQL và import data từ file Dump20221212.sql 
+- Tạo database với tên w42g2_lms trong MySQL và import data từ file Dump20221212.sql
 - Mở 2 terminal, 1 terminal `cd` tới thư mục frontend, 1 terminal `cd` thư mục backend
 - Trong terminal frontend
   - Chạy lệnh `npm install`
@@ -76,3 +76,12 @@
   - Chạy lệnh `expose 8080`
   - Chạy lệnh `waitress-serve --host 10.244.1.205 lms.wsgi:application`
 - Gõ [w42g2.int3306.freeddns.org](w42g2.int3306.freeddns.org) trong browser để được đưa tới trang web sản phẩm
+
+## Tài khoản mẫu
+
+- Giảng viên
+  - Tên đăng nhập: admin
+  - Mật khẩu: admin
+- Sinh viên
+  - Tên đăng nhập: 20021427
+  - Mật khẩu: 20021427âa
