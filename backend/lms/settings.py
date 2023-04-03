@@ -85,10 +85,10 @@ WSGI_APPLICATION = 'lms.wsgi.application'
 DATABASES = {
     'default': {  
         'ENGINE': 'django.db.backends.mysql',  
-        'NAME': 'w42g2_lms',  
-        'USER': 'w42g2',  
-        'PASSWORD': 'qwertyuiop', 
-        'HOST': '10.102.18.99',  
+        'NAME': 'lms',  
+        'USER': 'root',  
+        'PASSWORD': 'mynameisnam8226', 
+        'HOST': '127.0.0.1',  
         'PORT': '3306',  
         'OPTIONS': {  
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
